@@ -13,71 +13,22 @@
     3. the ability to delete a task
     4. the ability to edit an existing task
     */
-    // $(function(){
-    //     $('#add-button').click(function(){
-    //         let buttonId = $('#description').val().replace(/\s/g, "");
-    //         $("#todo-list").append('<li>' + $('#description').val() + '<button id=' + buttonId + '>Remove Task</button>'+ '</li>');
-    //         $("#description").val('');
-    //         $('#'+buttonId+ '').click(function(){
-    //             $(this).parent().remove();
-    //         })
-    //     })
-    // })
-
-    // <input type="checkbox"
-
-    // $(function(){
-    //     $('#add-button').click(function(){
-    //         let buttonId = $('#description').val().replace(/\s/g, "");
-    //         $("#todo-list").append('<li> <input type="checkbox" id=' + buttonId + '> '+ $('#description').val() + '</li>');
-    //         $("#description").val('');
-    //         $('#'+buttonId+'').click(function() {
-    //             $(this).parent().wrap("<strike>");
-    //         })
-    //     })
-    // })
     
-    // $(function(){
-    //     $('#add-button').click(function(){
-    //         let buttonId = $('#description').val().replace(/\s/g, "");
-    //         $("#todo-list").append('<li>' + $('#description').val() + '<button id=' + buttonId + '>Edit</button>'+ '</li>');
-    //         $("#description").val('');
-    //         $('#'+buttonId+ '').click(function(){
-    //             $(this).parent().append('<input id="text-field" type="text" name="text">').append('<button id="edit-submit">Edit Complete</button');
-    //             $('#edit-submit').click(function(){
-    //                 $(this).parent().replaceWith('<li>'+ $("#text-field").val());
-    //             })
-    //         })
-    //     })
-    // })
-
-
     $(function(){
-        $('#add-button').click(function(){
-            let buttonId = $('#description').val().replace(/\s/g, "");
-            $("#todo-list").append('<li>' + '<input type="checkbox" id=' + buttonId +'check' + '>' + $('#description').val() + '<button id=' + buttonId + '>Remove Task</button>'+'<button id=' + buttonId + 'edit'+'>Edit</button>'+ '</li>');
-            $("#description").val('');
-            $('#'+buttonId+ '').click(function(){
-                $(this).parent().remove();
-            })
-            $('#'+buttonId+'check').click(function() {
-                $(this).parent().wrap("<strike>");
-            })
-
-            $('#'+buttonId+ 'edit').click(function(){
-                $(this).parent().append('<input id="text-field" type="text" name="text">').append('<button id="edit-submit">Edit Complete</button');
-                $('#edit-submit').click(function(){
-                    $(this).parent().replaceWith('<li>'+ '<input type="checkbox" id=' + buttonId +'check' + '>' + $("#text-field").val() + '<button id=' + buttonId + '>Remove Task</button>'+'<button id=' + buttonId + 'edit'+'>Edit</button>'+ '</li>');
-                    $('#'+buttonId+ '').click(function(){
-                    $(this).parent().remove();
-                    })
-                    $('#'+buttonId+'check').click(function() {
-                        $(this).parent().wrap("<strike>");
-                    })
-                })
-            })
-        })
-    })
+      $('ul').on('click', '.delete', function(){
+        $(this).parent().remove();
+      });
+      $('ul').on('click', 'span', function(){
+        $(this).attr('contenteditable', 'true');
+      });
+      $('ul').on('click', '.check', function(){
+        $(this).parent().attr('checked', 'true').wrap('<strike>');
+      });
+      $('#add-button').click(function(){
+        var text = $('#description').val();
+        $('ul').append('<li><input type="checkbox" class="check"><span>'+text+'</span><button class="delete">X</button></li>');
+      })
+    });
 
     </script>
     <style>
